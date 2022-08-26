@@ -1,5 +1,5 @@
 main :: IO ()
 
 main = do
-    let message = "hello worldos"
-    putStrLn message
+  let message = "hello world"
+  putStrLn message
