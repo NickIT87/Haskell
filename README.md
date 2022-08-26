@@ -1,0 +1,2 @@
+# Haskell
+learn haskell lang
