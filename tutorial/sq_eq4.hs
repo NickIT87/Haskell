@@ -9,7 +9,7 @@ main =
     c = 1
     solution = solveSquare a b c
 
--- | Solve equation of kind a x^2 + b x + x = 0
+-- | Solve equation of kind ax² + bx + c = 0
 solveSquare :: Double -> Double -> Double -> [Double]
 solveSquare a b c
   | a == 0 && b == 0  = []
