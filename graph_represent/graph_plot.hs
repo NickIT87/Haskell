@@ -1,20 +1,39 @@
-module Main where
+import Data.Map.Strict (Map, (!))
+import qualified Data.Map.Strict as Map
 
-import              Data.Functor                        ((<&>))
-import qualified    Data.Text.Lazy as L                 (pack)
-import qualified    Data.Text.Lazy.IO as IO             (putStrLn)
-import              Data.Graph.Inductive.Graph          (mkGraph)
-import              Data.Graph.Inductive.PatriciaTree   (Gr)
-import              Data.GraphViz                       (graphToDot, nonClusteredParams, fmtNode)
-import              Data.GraphViz.Attributes.Complete   (Label(StrLabel), Attribute(Label))
-import              Data.GraphViz.Printing              (renderDot, toDot)
+-- A directed graph represented as an adjacency list
+type Graph = Map Int [Int]
 
-exampleGraph :: Gr String ()
-exampleGraph = mkGraph (zip [1..3] ["shorts", "socks", "watch"]) [(1,2,()),(2,3,())]
+-- Example graph
+graph :: Graph
+graph = Map.fromList [(1, [2, 3]), (2, [4]), (3, [4, 5]), (4, []), (5, [6]), (6, [])]
 
-labelledNodesParams = nonClusteredParams { fmtNode= \(_,label)-> [Label (StrLabel (L.pack label))] }
+-- Function to check if a vertex is in the graph
+hasVertex :: Int -> Graph -> Bool
+hasVertex v g = Map.member v g
 
-putGraph :: Gr String () -> IO ()
-putGraph = graphToDot labelledNodesParams <&> toDot <&> renderDot <&> IO.putStrLn
+-- Function to get the neighbors of a vertex
+neighbors :: Int -> Graph -> [Int]
+neighbors v g = g ! v
 
-main = putGraph exampleGraph
+-- Function to get the number of vertices in the graph
+numVertices :: Graph -> Int
+numVertices = Map.size
+
+-- Function to get the number of edges in the graph
+numEdges :: Graph -> Int
+numEdges g = sum $ map length (Map.elems g)
+
+-- Function to add an edge to the graph
+addEdge :: Int -> Int -> Graph -> Graph
+addEdge u v g = Map.insertWith (++) u [v] g
+
+-- Function to remove an edge from the graph
+removeEdge :: Int -> Int -> Graph -> Graph
+removeEdge u v g = Map.update (\vs -> Just (filter (/= v) vs)) u g
+
+graphToString :: Graph -> String
+graphToString g = unlines [show v ++ " -> " ++ show ns | (v, ns) <- Map.toList g]
+
+main :: IO ()
+main = putStrLn (graphToString graph)
