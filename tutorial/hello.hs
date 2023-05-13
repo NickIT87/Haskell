@@ -1,5 +1,6 @@
 main :: IO ()
 
+rightTriangles' :: [(Integer, Integer, Integer)]
 rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
 
 bmiTell :: (RealFloat a) => a -> a -> String
@@ -13,6 +14,7 @@ bmiTell weight height
           normal = 25.0  
           fat = 30.0 
 
+bmi :: String
 bmi = bmiTell 100 1.85
 
 main = do
