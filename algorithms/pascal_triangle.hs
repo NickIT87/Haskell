@@ -1,3 +1,7 @@
+{- cabal:
+build-depends: base
+-}
+
 pascal :: [[Integer]]
 pascal = iterate nextRow [1]
   where
