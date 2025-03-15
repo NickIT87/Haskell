@@ -10,6 +10,7 @@
 --insertionSort [] = []  -- Базовый случай: пустой список уже отсортирован
 --insertionSort (x:xs) = insert x (insertionSort xs)  -- Рекурсивно сортируем хвост и вставляем x
 
+
 insert :: Ord a => a -> [a] -> [a]
 insert x xs = let (left, right) = span (< x) xs in left ++ [x] ++ right
 
