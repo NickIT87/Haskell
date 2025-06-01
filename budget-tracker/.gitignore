@@ -1,0 +1,41 @@
+# Cabal build artifacts
+/dist-newstyle/
+/dist/
+/cabal.project.local
+cabal.sandbox.config
+cabal.config
+
+# Stack (если вдруг используешь)
+.stack-work/
+
+# GHC-specific
+*.hi
+*.o
+*.dyn_hi
+*.dyn_o
+
+# Executables
+*.exe
+*.out
+*.app
+*.so
+*.dll
+*.dylib
+
+# OS / Editor / Tool files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# VSCode / JetBrains
+.vscode/
+.idea/
+
+# Logs / Temp
+*.log
+*.tmp
+
+# Binary output
+budget-tracker
