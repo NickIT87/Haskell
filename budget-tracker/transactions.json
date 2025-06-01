@@ -1,1 +1,1 @@
-[{"amount":800,"category":"month","comment":"test","date":"2025-06-01","tType":"Income"}]
+[{"amount":200,"category":"food","comment":"test food","date":"2025-06-01","tType":"Expense"},{"amount":800,"category":"month","comment":"test","date":"2025-06-01","tType":"Income"}]
