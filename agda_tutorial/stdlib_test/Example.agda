@@ -1,32 +1,26 @@
 module Example where
 
--- Подключаем стандартную библиотеку
-open import Data.Nat
-open import Data.Vec
-open import Data.Bool
-open import Relation.Binary.PropositionalEquality
+open import Data.Nat using (ℕ; zero; suc; _+_)
+open import Data.Vec using (Vec; []; _∷_)
+open import Data.Bool using (Bool; true)
+open import Relation.Binary.PropositionalEquality using (_≡_; refl; cong)
 
--- Пример Bool
 y : Bool
 y = true
 
--- Пример Nat
-x : Nat
-x = 42  -- работает, так как используем Data.Nat
+x : ℕ
+x = 42
 
--- Пример зависимого типа: Vec
-v : Vec Nat 3
+v : Vec ℕ 3
 v = 1 ∷ 2 ∷ 3 ∷ []
 
--- Функция на Vec
-sumVec : {n : Nat} -> Vec Nat n -> Nat
+sumVec : {n : ℕ} → Vec ℕ n → ℕ
 sumVec [] = 0
 sumVec (x ∷ xs) = x + sumVec xs
 
-total : Nat
+total : ℕ
 total = sumVec v
 
--- Пример доказательства: сумма с нулём
-sumZeroRight : (n : Nat) -> n + 0 ≡ n
-sumZeroRight zero = refl
+sumZeroRight : (n : ℕ) → n + 0 ≡ n
+sumZeroRight zero    = refl
 sumZeroRight (suc n) = cong suc (sumZeroRight n)
