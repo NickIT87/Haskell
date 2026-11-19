@@ -10,3 +10,5 @@ postulate putStrLn : String → IO ⊤
 
 main : IO ⊤
 main = putStrLn "Hello world!"
+
+-- agda --compile hello-world.agda
